@@ -1,0 +1,4 @@
+qt/qt_libbitcoinqt_a-qrc_nairacoin.o: qt/qrc_nairacoin.cpp \
+ /usr/include/stdc-predef.h
+
+/usr/include/stdc-predef.h:

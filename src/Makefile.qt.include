@@ -1,0 +1,860 @@
+# Copyright (c) 2013-2016 The Bitcoin Core developers
+# Distributed under the MIT software license, see the accompanying
+# file COPYING or http://www.opensource.org/licenses/mit-license.php.
+
+bin_PROGRAMS += qt/nairacoin-qt
+EXTRA_LIBRARIES += qt/libbitcoinqt.a
+
+# nairacoin qt core #
+QT_TS = \
+  qt/locale/nairacoin_bg.ts \
+  qt/locale/nairacoin_ca.ts \
+  qt/locale/nairacoin_cs.ts \
+  qt/locale/nairacoin_da.ts \
+  qt/locale/nairacoin_de.ts \
+  qt/locale/nairacoin_en.ts \
+  qt/locale/nairacoin_en_GB.ts \
+  qt/locale/nairacoin_en_US.ts \
+  qt/locale/nairacoin_eo.ts \
+  qt/locale/nairacoin_es.ts \
+  qt/locale/nairacoin_es_ES.ts \
+  qt/locale/nairacoin_fi.ts \
+  qt/locale/nairacoin_fr_FR.ts \
+  qt/locale/nairacoin_hi_IN.ts \
+  qt/locale/nairacoin_hr.ts \
+  qt/locale/nairacoin_hr_HR.ts \
+  qt/locale/nairacoin_it.ts \
+  qt/locale/nairacoin_ja.ts \
+  qt/locale/nairacoin_ko_KR.ts \
+  qt/locale/nairacoin_lt_LT.ts \
+  qt/locale/nairacoin_nl.ts \
+  qt/locale/nairacoin_pl.ts \
+  qt/locale/nairacoin_pt.ts \
+  qt/locale/nairacoin_pt_BR.ts \
+  qt/locale/nairacoin_ro_RO.ts \
+  qt/locale/nairacoin_ru.ts \
+  qt/locale/nairacoin_sk.ts \
+  qt/locale/nairacoin_sv.ts \
+  qt/locale/nairacoin_tr.ts \
+  qt/locale/nairacoin_uk.ts \
+  qt/locale/nairacoin_vi.ts \
+  qt/locale/nairacoin_zh_CN.ts \
+  qt/locale/nairacoin_zh_TW.ts
+
+QT_FORMS_UI = \
+  qt/forms/addressbookpage.ui \
+  qt/forms/askpassphrasedialog.ui \
+  qt/forms/coincontroldialog.ui \
+  qt/forms/blockexplorer.ui \
+  qt/forms/editaddressdialog.ui \
+  qt/forms/governancepage.ui \
+  qt/forms/helpmessagedialog.ui \
+  qt/forms/intro.ui \
+  qt/forms/openuridialog.ui \
+  qt/forms/optionsdialog.ui \
+  qt/forms/rpcconsole.ui \
+  qt/nairacoin/forms/loadingdialog.ui \
+  qt/forms/zNRCcontroldialog.ui \
+  qt/nairacoin/forms/snackbar.ui \
+  qt/nairacoin/forms/navmenuwidget.ui \
+  qt/nairacoin/forms/lockunlock.ui \
+  qt/nairacoin/forms/expandablebutton.ui \
+  qt/nairacoin/forms/receivedialog.ui \
+  qt/nairacoin/forms/walletpassworddialog.ui \
+  qt/nairacoin/forms/topbar.ui \
+  qt/nairacoin/forms/txrow.ui \
+  qt/nairacoin/forms/dashboardwidget.ui \
+  qt/nairacoin/forms/coincontrolpivwidget.ui \
+  qt/nairacoin/forms/addresslabelrow.ui \
+  qt/nairacoin/forms/contactdropdownrow.ui \
+  qt/nairacoin/forms/mninfodialog.ui \
+  qt/nairacoin/forms/optionbutton.ui \
+  qt/nairacoin/forms/masternodewizarddialog.ui \
+  qt/nairacoin/forms/mnrow.ui \
+  qt/nairacoin/forms/masternodeswidget.ui \
+  qt/nairacoin/forms/myaddressrow.ui \
+  qt/nairacoin/forms/csrow.ui \
+  qt/nairacoin/forms/sendchangeaddressdialog.ui \
+  qt/nairacoin/forms/sendconfirmdialog.ui \
+  qt/nairacoin/forms/sendcustomfeedialog.ui \
+  qt/nairacoin/forms/sendchangeaddressdialog.ui \
+  qt/nairacoin/forms/sendmultirow.ui \
+  qt/nairacoin/forms/send.ui \
+  qt/nairacoin/forms/addnewaddressdialog.ui \
+  qt/nairacoin/forms/addnewcontactdialog.ui \
+  qt/nairacoin/forms/requestdialog.ui \
+  qt/nairacoin/forms/receivewidget.ui \
+  qt/nairacoin/forms/tooltipmenu.ui \
+  qt/nairacoin/forms/addresseswidget.ui \
+  qt/nairacoin/forms/defaultdialog.ui \
+  qt/nairacoin/forms/denomgenerationdialog.ui \
+  qt/nairacoin/forms/privacywidget.ui \
+  qt/nairacoin/forms/coldstakingwidget.ui \
+  qt/nairacoin/settings/forms/settingsbackupwallet.ui \
+  qt/nairacoin/settings/forms/settingsbittoolwidget.ui \
+  qt/nairacoin/settings/forms/settingsconsolewidget.ui \
+  qt/nairacoin/settings/forms/settingsdisplayoptionswidget.ui \
+  qt/nairacoin/settings/forms/settingsfaqwidget.ui \
+  qt/nairacoin/settings/forms/settingsinformationwidget.ui \
+  qt/nairacoin/settings/forms/settingsmainoptionswidget.ui \
+  qt/nairacoin/settings/forms/settingsmultisenddialog.ui \
+  qt/nairacoin/settings/forms/settingsmultisendwidget.ui \
+  qt/nairacoin/settings/forms/settingssignmessagewidgets.ui \
+  qt/nairacoin/settings/forms/settingswalletoptionswidget.ui \
+  qt/nairacoin/settings/forms/settingswalletrepairwidget.ui \
+  qt/nairacoin/settings/forms/settingswidget.ui \
+  qt/nairacoin/forms/welcomecontentwidget.ui \
+  qt/nairacoin/forms/splash.ui
+
+QT_MOC_CPP = \
+  qt/moc_addressbookpage.cpp \
+  qt/moc_addresstablemodel.cpp \
+  qt/moc_askpassphrasedialog.cpp \
+  qt/moc_bantablemodel.cpp \
+  qt/moc_bitcoinaddressvalidator.cpp \
+  qt/moc_bitcoinamountfield.cpp \
+  qt/nairacoin/moc_nairacoingui.cpp \
+  qt/moc_bitcoinunits.cpp \
+  qt/moc_blockexplorer.cpp \
+  qt/moc_clientmodel.cpp \
+  qt/moc_coincontroldialog.cpp \
+  qt/moc_coincontroltreewidget.cpp \
+  qt/moc_csvmodelwriter.cpp \
+  qt/moc_editaddressdialog.cpp \
+  qt/moc_governancepage.cpp \
+  qt/moc_guiutil.cpp \
+  qt/moc_intro.cpp \
+  qt/moc_macdockiconhandler.cpp \
+  qt/moc_macnotificationhandler.cpp \
+  qt/moc_notificator.cpp \
+  qt/moc_openuridialog.cpp \
+  qt/moc_optionsdialog.cpp \
+  qt/moc_optionsmodel.cpp \
+  qt/moc_peertablemodel.cpp \
+  qt/moc_paymentserver.cpp \
+  qt/moc_qvalidatedlineedit.cpp \
+  qt/moc_qvaluecombobox.cpp \
+  qt/moc_proposalframe.cpp \
+  qt/moc_recentrequeststablemodel.cpp \
+  qt/moc_rpcconsole.cpp \
+  qt/moc_splashscreen.cpp \
+  qt/moc_trafficgraphwidget.cpp \
+  qt/moc_transactiondesc.cpp \
+  qt/moc_transactionfilterproxy.cpp \
+  qt/moc_transactiontablemodel.cpp \
+  qt/moc_utilitydialog.cpp \
+  qt/moc_walletmodel.cpp \
+  qt/nairacoin/moc_loadingdialog.cpp \
+  qt/moc_zNRCcontroldialog.cpp \
+  qt/nairacoin/moc_pwidget.cpp \
+  qt/nairacoin/moc_snackbar.cpp \
+  qt/nairacoin/moc_navmenuwidget.cpp \
+  qt/nairacoin/moc_lockunlock.cpp \
+  qt/nairacoin/moc_expandablebutton.cpp \
+  qt/nairacoin/moc_furabstractlistitemdelegate.cpp \
+  qt/nairacoin/moc_receivedialog.cpp \
+  qt/nairacoin/moc_walletpassworddialog.cpp \
+  qt/nairacoin/moc_pfborderimage.cpp \
+  qt/nairacoin/moc_topbar.cpp \
+  qt/nairacoin/moc_txrow.cpp \
+  qt/nairacoin/moc_dashboardwidget.cpp \
+  qt/nairacoin/moc_coincontrolpivwidget.cpp \
+  qt/nairacoin/moc_addresslabelrow.cpp \
+  qt/nairacoin/moc_contactdropdownrow.cpp \
+  qt/nairacoin/moc_mninfodialog.cpp \
+  qt/nairacoin/moc_optionbutton.cpp \
+  qt/nairacoin/moc_coldstakingmodel.cpp \
+  qt/nairacoin/moc_mnmodel.cpp \
+  qt/nairacoin/moc_masternodewizarddialog.cpp \
+  qt/nairacoin/moc_mnrow.cpp \
+  qt/nairacoin/moc_masternodeswidget.cpp \
+  qt/nairacoin/moc_myaddressrow.cpp \
+  qt/nairacoin/moc_csrow.cpp \
+  qt/nairacoin/moc_contactsdropdown.cpp \
+  qt/nairacoin/moc_sendchangeaddressdialog.cpp \
+  qt/nairacoin/moc_sendconfirmdialog.cpp \
+  qt/nairacoin/moc_sendcustomfeedialog.cpp \
+  qt/nairacoin/moc_sendchangeaddressdialog.cpp \
+  qt/nairacoin/moc_sendmultirow.cpp \
+  qt/nairacoin/moc_send.cpp \
+  qt/nairacoin/moc_addnewaddressdialog.cpp \
+  qt/nairacoin/moc_addnewcontactdialog.cpp \
+  qt/nairacoin/moc_requestdialog.cpp \
+  qt/nairacoin/moc_receivewidget.cpp \
+  qt/nairacoin/moc_tooltipmenu.cpp \
+  qt/nairacoin/moc_addresseswidget.cpp \
+  qt/nairacoin/moc_defaultdialog.cpp \
+  qt/nairacoin/moc_denomgenerationdialog.cpp \
+  qt/nairacoin/moc_privacywidget.cpp \
+  qt/nairacoin/moc_coldstakingwidget.cpp \
+  qt/nairacoin/settings/moc_settingsbackupwallet.cpp \
+  qt/nairacoin/settings/moc_settingsbittoolwidget.cpp \
+  qt/nairacoin/settings/moc_settingsconsolewidget.cpp \
+  qt/nairacoin/settings/moc_settingsdisplayoptionswidget.cpp \
+  qt/nairacoin/settings/moc_settingsfaqwidget.cpp \
+  qt/nairacoin/settings/moc_settingsinformationwidget.cpp \
+  qt/nairacoin/settings/moc_settingsmainoptionswidget.cpp \
+  qt/nairacoin/settings/moc_settingsmultisenddialog.cpp \
+  qt/nairacoin/settings/moc_settingsmultisendwidget.cpp \
+  qt/nairacoin/settings/moc_settingssignmessagewidgets.cpp \
+  qt/nairacoin/settings/moc_settingswalletoptionswidget.cpp \
+  qt/nairacoin/settings/moc_settingswalletrepairwidget.cpp \
+  qt/nairacoin/settings/moc_settingswidget.cpp \
+  qt/nairacoin/moc_welcomecontentwidget.cpp \
+  qt/nairacoin/moc_splash.cpp
+
+BITCOIN_MM = \
+  qt/macdockiconhandler.mm \
+  qt/macnotificationhandler.mm
+
+QT_MOC = \
+  qt/nairacoin.moc \
+  qt/bitcoinamountfield.moc \
+  qt/intro.moc \
+  qt/rpcconsole.moc \
+  qt/nairacoin/settings/moc_settingsconsolewidget.cpp
+
+QT_QRC_CPP = qt/qrc_nairacoin.cpp
+QT_QRC = qt/nairacoin.qrc
+QT_QRC_LOCALE_CPP = qt/qrc_nairacoin_locale.cpp
+QT_QRC_LOCALE = qt/nairacoin_locale.qrc
+
+PROTOBUF_CC = qt/paymentrequest.pb.cc
+PROTOBUF_H = qt/paymentrequest.pb.h
+PROTOBUF_PROTO = qt/paymentrequest.proto
+
+BITCOIN_QT_H = \
+  qt/addressbookpage.h \
+  qt/addresstablemodel.h \
+  qt/askpassphrasedialog.h \
+  qt/bantablemodel.h \
+  qt/bitcoinaddressvalidator.h \
+  qt/bitcoinamountfield.h \
+  qt/nairacoin/nairacoingui.h \
+  qt/bitcoinunits.h \
+  qt/blockexplorer.h \
+  qt/clientmodel.h \
+  qt/coincontroldialog.h \
+  qt/coincontroltreewidget.h \
+  qt/csvmodelwriter.h \
+  qt/editaddressdialog.h \
+  qt/governancepage.h \
+  qt/guiconstants.h \
+  qt/guiutil.h \
+  qt/intro.h \
+  qt/macdockiconhandler.h \
+  qt/macnotificationhandler.h \
+  qt/networkstyle.h \
+  qt/notificator.h \
+  qt/openuridialog.h \
+  qt/optionsdialog.h \
+  qt/optionsmodel.h \
+  qt/paymentrequestplus.h \
+  qt/paymentserver.h \
+  qt/peertablemodel.h \
+  qt/platformstyle.h \
+  qt/proposalframe.h \
+  qt/qvalidatedlineedit.h \
+  qt/qvaluecombobox.h \
+  qt/recentrequeststablemodel.h \
+  qt/rpcconsole.h \
+  qt/splashscreen.h \
+  qt/trafficgraphwidget.h \
+  qt/transactiondesc.h \
+  qt/transactionfilterproxy.h \
+  qt/transactionrecord.h \
+  qt/transactiontablemodel.h \
+  qt/utilitydialog.h \
+  qt/walletmodel.h \
+  qt/walletmodeltransaction.h \
+  qt/nairacoin/prunnable.h \
+  qt/nairacoin/pfborderimage.h \
+  qt/nairacoin/loadingdialog.h \
+  qt/winshutdownmonitor.h \
+  qt/zNRCcontroldialog.h \
+  qt/nairacoin/pwidget.h \
+  qt/nairacoin/guitransactionsutils.h \
+  qt/nairacoin/snackbar.h \
+  qt/nairacoin/navmenuwidget.h \
+  qt/nairacoin/lockunlock.h \
+  qt/nairacoin/receivedialog.h \
+  qt/nairacoin/furlistrow.h \
+  qt/nairacoin/furabstractlistitemdelegate.h \
+  qt/nairacoin/txviewholder.h \
+  qt/nairacoin/qtutils.h \
+  qt/nairacoin/expandablebutton.h \
+  qt/nairacoin/walletpassworddialog.h \
+  qt/nairacoin/topbar.h \
+  qt/nairacoin/txrow.h \
+  qt/nairacoin/addressholder.h \
+  qt/nairacoin/addressfilterproxymodel.h \
+  qt/nairacoin/dashboardwidget.h \
+  qt/nairacoin/coincontrolpivwidget.h \
+  qt/nairacoin/addresslabelrow.h \
+  qt/nairacoin/contactdropdownrow.h \
+  qt/nairacoin/mninfodialog.h \
+  qt/nairacoin/optionbutton.h \
+  qt/nairacoin/coldstakingmodel.h \
+  qt/nairacoin/mnmodel.h \
+  qt/nairacoin/masternodewizarddialog.h \
+  qt/nairacoin/mnrow.h \
+  qt/nairacoin/masternodeswidget.h \
+  qt/nairacoin/myaddressrow.h \
+  qt/nairacoin/csrow.h \
+  qt/nairacoin/contactsdropdown.h \
+  qt/nairacoin/sendchangeaddressdialog.h \
+  qt/nairacoin/sendconfirmdialog.h \
+  qt/nairacoin/sendcustomfeedialog.h \
+  qt/nairacoin/sendchangeaddressdialog.h \
+  qt/nairacoin/sendmultirow.h \
+  qt/nairacoin/send.h \
+  qt/nairacoin/addnewaddressdialog.h \
+  qt/nairacoin/addnewcontactdialog.h \
+  qt/nairacoin/requestdialog.h \
+  qt/nairacoin/receivewidget.h \
+  qt/nairacoin/tooltipmenu.h \
+  qt/nairacoin/addresseswidget.h \
+  qt/nairacoin/defaultdialog.h \
+  qt/nairacoin/denomgenerationdialog.h \
+  qt/nairacoin/privacywidget.h \
+  qt/nairacoin/coldstakingwidget.h \
+  qt/nairacoin/settings/settingsbackupwallet.h \
+  qt/nairacoin/settings/settingsbittoolwidget.h \
+  qt/nairacoin/settings/settingsconsolewidget.h \
+  qt/nairacoin/settings/settingsdisplayoptionswidget.h \
+  qt/nairacoin/settings/settingsfaqwidget.h \
+  qt/nairacoin/settings/settingsinformationwidget.h \
+  qt/nairacoin/settings/settingsmainoptionswidget.h \
+  qt/nairacoin/settings/settingsmultisenddialog.h \
+  qt/nairacoin/settings/settingsmultisendwidget.h \
+  qt/nairacoin/settings/settingssignmessagewidgets.h \
+  qt/nairacoin/settings/settingswalletoptionswidget.h \
+  qt/nairacoin/settings/settingswalletrepairwidget.h \
+  qt/nairacoin/settings/settingswidget.h \
+  qt/nairacoin/welcomecontentwidget.h \
+  qt/nairacoin/splash.h
+
+RES_ICONS = \
+  qt/res/icons/add.png \
+  qt/res/icons/address-book.png \
+  qt/res/icons/automint_active.png \
+  qt/res/icons/automint_inactive.png \
+  qt/res/icons/bitcoin.ico \
+  qt/res/icons/bitcoin.png \
+  qt/res/icons/bitcoin_testnet.ico \
+  qt/res/icons/bitcoin_testnet.png \
+  qt/res/icons/bitcoin_regtest.png \
+  qt/res/icons/browse.png \
+  qt/res/icons/clock1.png \
+  qt/res/icons/clock2.png \
+  qt/res/icons/clock3.png \
+  qt/res/icons/clock4.png \
+  qt/res/icons/clock5.png \
+  qt/res/icons/configure.png \
+  qt/res/icons/connect0_16.png \
+  qt/res/icons/connect1_16.png \
+  qt/res/icons/connect2_16.png \
+  qt/res/icons/connect3_16.png \
+  qt/res/icons/connect4_16.png \
+  qt/res/icons/debugwindow.png \
+  qt/res/icons/edit.png \
+  qt/res/icons/editcopy.png \
+  qt/res/icons/editpaste.png \
+  qt/res/icons/explorer.png \
+  qt/res/icons/export.png \
+  qt/res/icons/eye.png \
+  qt/res/icons/eye_minus.png \
+  qt/res/icons/eye_plus.png \
+  qt/res/icons/filesave.png \
+  qt/res/icons/history.png \
+  qt/res/icons/key.png \
+  qt/res/icons/lock_closed.png \
+  qt/res/icons/lock_open.png \
+  qt/res/icons/masternodes.png \
+  qt/res/icons/onion.png \
+  qt/res/icons/overview.png \
+  qt/res/icons/qrcode.png \
+  qt/res/icons/quit.png \
+  qt/res/icons/receive.png \
+  qt/res/icons/receive_dark.png \
+  qt/res/icons/privacy.png \
+  qt/res/icons/remove.png \
+  qt/res/icons/send.png \
+  qt/res/icons/send_dark.png \
+  qt/res/icons/governance.png \
+  qt/res/icons/governance_dark.png \
+  qt/res/icons/staking_active.png \
+  qt/res/icons/staking_inactive.png \
+  qt/res/icons/synced.png \
+  qt/res/icons/trade.png \
+  qt/res/icons/transaction0.png \
+  qt/res/icons/transaction2.png \
+  qt/res/icons/transaction_conflicted.png \
+  qt/res/icons/tx_inout.png \
+  qt/res/icons/tx_input.png \
+  qt/res/icons/tx_output.png \
+  qt/res/icons/tx_mined.png \
+  qt/res/icons/ic-transaction-received.svg \
+  qt/res/icons/ic-transaction-mint.svg \
+  qt/res/icons/ic-transaction-sent.svg \
+  qt/res/icons/ic-transaction-staked.svg \
+  qt/res/icons/unit_nairacoin.png \
+  qt/res/icons/unit_mnairacoin.png \
+  qt/res/icons/unit_unairacoin.png \
+  qt/res/icons/unit_tnairacoin.png \
+  qt/res/icons/unit_tmnairacoin.png \
+  qt/res/icons/unit_tunairacoin.png \
+  qt/res/icons/yesvote.png \
+  qt/res/icons/novote.png \
+  qt/res/icons/abstainvote.png \
+  qt/nairacoin/res/img/bg-dashboard-banner.png \
+  qt/nairacoin/res/img/bg-multi-number-dark.svg \
+  qt/nairacoin/res/img/ic-check-locked.svg \
+  qt/nairacoin/res/img/ic-nav-address.svg \
+  qt/nairacoin/res/img/ic-update.svg \
+  qt/nairacoin/res/img/bg-multi-number.svg \
+  qt/nairacoin/res/img/ic-check-mint-off.svg \
+  qt/nairacoin/res/img/ic-nav-cold-staking.svg \
+  qt/nairacoin/res/img/ic-nav-cold-staking-active.svg \
+  qt/nairacoin/res/img/ic-nav-dashboard-active.svg \
+  qt/nairacoin/res/img/ic-wallet-status-locked.svg \
+  qt/nairacoin/res/img/bg-splash.svg \
+  qt/nairacoin/res/img/bg-splash.png \
+  qt/nairacoin/res/img/ic-check-mint.svg \
+  qt/nairacoin/res/img/ic-nav-dashboard-hover.svg \
+  qt/nairacoin/res/img/ic-wallet-status-staking.svg \
+  qt/nairacoin/res/img/ic-check-peers-off.svg \
+  qt/nairacoin/res/img/ic-nav-dashboard.svg \
+  qt/nairacoin/res/img/ic-wallet-status-unlocked.svg \
+  qt/nairacoin/res/img/ic-check-peers.svg \
+  qt/nairacoin/res/img/ic-nav-master-active.svg \
+  qt/nairacoin/res/img/ic-watch-password-white.svg \
+  qt/nairacoin/res/img/bg-welcome-container.jpg \
+  qt/nairacoin/res/img/bg-welcome-container.png \
+  qt/nairacoin/res/img/bg-welcome-container.svg \
+  qt/nairacoin/res/img/bg-welcome-container@2x.png \
+  qt/nairacoin/res/img/bg-welcome-container@3x.png \
+  qt/nairacoin/res/img/ic-check-staking-off.svg \
+  qt/nairacoin/res/img/ic-nav-master-hover.svg \
+  qt/nairacoin/res/img/ic-watch-password.svg \
+  qt/nairacoin/res/img/bg-welcome.jpg \
+  qt/nairacoin/res/img/bg-welcome.svg \
+  qt/nairacoin/res/img/bg-welcome@2x.jpg \
+  qt/nairacoin/res/img/bg-welcome@3x.jpg \
+  qt/nairacoin/res/img/bg-welcome.png \
+  qt/nairacoin/res/img/ic-check-staking.svg \
+  qt/nairacoin/res/img/ic-nav-master.svg \
+  qt/nairacoin/res/img/img-dashboard-banner.jpg \
+  qt/nairacoin/res/img/btn-radio-active.svg \
+  qt/nairacoin/res/img/ic-check-sync-off.svg \
+  qt/nairacoin/res/img/ic-nav-privacy-active.svg \
+  qt/nairacoin/res/img/img-empty-contacts.svg \
+  qt/nairacoin/res/img/btn-radio-off.svg \
+  qt/nairacoin/res/img/ic-check-sync.png \
+  qt/nairacoin/res/img/ic-nav-privacy-hover.svg \
+  qt/nairacoin/res/img/img-empty-dark-contacts.svg \
+  qt/nairacoin/res/img/ic-contact-arrow-down.svg \
+  qt/nairacoin/res/img/ic-contact-arrow-down-white.svg \
+  qt/nairacoin/res/img/ic-check-sync.svg \
+  qt/nairacoin/res/img/ic-check-faq.svg \
+  qt/nairacoin/res/img/ic-nav-privacy.svg \
+  qt/nairacoin/res/img/img-empty-dark-error.svg \
+  qt/nairacoin/res/img/ic-add-label.svg \
+  qt/nairacoin/res/img/ic-pending.svg \
+  qt/nairacoin/res/img/ic-check-theme-dark.svg \
+  qt/nairacoin/res/img/ic-nav-receive-active.svg \
+  qt/nairacoin/res/img/img-empty-dark-masternode.svg \
+  qt/nairacoin/res/img/ic-add-liliac.svg \
+  qt/nairacoin/res/img/ic-check-theme-light.svg \
+  qt/nairacoin/res/img/ic-nav-receive-hover.svg \
+  qt/nairacoin/res/img/img-empty-dark-multisend.svg \
+  qt/nairacoin/res/img/ic-add-purple.svg \
+  qt/nairacoin/res/img/ic-check-white.svg \
+  qt/nairacoin/res/img/ic-nav-receive.svg \
+  qt/nairacoin/res/img/img-empty-dark-peers.svg \
+  qt/nairacoin/res/img/ic-add.svg \
+  qt/nairacoin/res/img/ic-check.svg \
+  qt/nairacoin/res/img/ic-nav-send-active.svg \
+  qt/nairacoin/res/img/img-empty-dark-staking-off.svg \
+  qt/nairacoin/res/img/img-empty-dark-staking-on.svg \
+  qt/nairacoin/res/img/ic-address-book-grey.svg \
+  qt/nairacoin/res/img/ic-chevron-left.svg \
+  qt/nairacoin/res/img/ic-nav-send-hover.svg \
+  qt/nairacoin/res/img/img-empty-dark-transactions.svg \
+  qt/nairacoin/res/img/ic-address-book-white.svg \
+  qt/nairacoin/res/img/ic-chevron-right.svg \
+  qt/nairacoin/res/img/ic-nav-send.svg \
+  qt/nairacoin/res/img/img-empty-error.svg \
+  qt/nairacoin/res/img/ic-address-book.svg \
+  qt/nairacoin/res/img/ic-clear-liliac.svg \
+  qt/nairacoin/res/img/ic-nav-settings-active.svg \
+  qt/nairacoin/res/img/img-empty-masternode.svg \
+  qt/nairacoin/res/img/ic-address-send-white.svg \
+  qt/nairacoin/res/img/ic-clear-purple.svg \
+  qt/nairacoin/res/img/ic-nav-settings-hover.svg \
+  qt/nairacoin/res/img/img-empty-multisend.svg \
+  qt/nairacoin/res/img/ic-address-send.svg \
+  qt/nairacoin/res/img/ic-close-white.svg \
+  qt/nairacoin/res/img/ic-nav-settings.svg \
+  qt/nairacoin/res/img/img-empty-peers.svg \
+  qt/nairacoin/res/img/img-empty-privacy.svg \
+  qt/nairacoin/res/img/img-empty-privacy-dark.svg \
+  qt/nairacoin/res/img/ic-arrow-drop-down-white.svg \
+  qt/nairacoin/res/img/ic-close.svg \
+  qt/nairacoin/res/img/ic-radio-liliac-on.svg \
+  qt/nairacoin/res/img/img-empty-staking-off.svg \
+  qt/nairacoin/res/img/ic-arrow-drop-down.svg \
+  qt/nairacoin/res/img/ic-coin-piv.svg \
+  qt/nairacoin/res/img/ic-receive-off.svg \
+  qt/nairacoin/res/img/img-empty-staking-on.svg \
+  qt/nairacoin/res/img/ic-arrow-drop-up-white.svg \
+  qt/nairacoin/res/img/ic-coin-zNRC.png \
+  qt/nairacoin/res/img/ic-receive-on.svg \
+  qt/nairacoin/res/img/img-empty-transactions.svg \
+  qt/nairacoin/res/img/ic-arrow-drop-up.svg \
+  qt/nairacoin/res/img/ic-coin-zNRC.svg \
+  qt/nairacoin/res/img/ic-received.svg \
+  qt/nairacoin/res/img/img-logo-nairacoin.png \
+  qt/nairacoin/res/img/ic-arrow-drop-white-down.svg \
+  qt/nairacoin/res/img/ic-combo-box.svg \
+  qt/nairacoin/res/img/ic-send.svg \
+  qt/nairacoin/res/img/img-logo-nairacoin@2x.png \
+  qt/nairacoin/res/img/ic-arrow-purple-down.svg \
+  qt/nairacoin/res/img/ic-connect.svg \
+  qt/nairacoin/res/img/ic-submenu-lock.svg \
+  qt/nairacoin/res/img/img-logo-nairacoin@3x.png \
+  qt/nairacoin/res/img/img-logo-nairacoin.svg \
+  qt/nairacoin/res/img/ic-arrow-right-white.svg \
+  qt/nairacoin/res/img/ic-arrow-left-white.svg \
+  qt/nairacoin/res/img/ic-arrow-left.svg \
+  qt/nairacoin/res/img/ic-copy-liliac.svg \
+  qt/nairacoin/res/img/ic-submenu-staking.svg \
+  qt/nairacoin/res/img/img-nav-logo-nairacoin.png \
+  qt/nairacoin/res/img/ic-arrow-right.svg \
+  qt/nairacoin/res/img/ic-copy.svg \
+  qt/nairacoin/res/img/ic-copy-big.svg \
+  qt/nairacoin/res/img/ic-copy-big-white.svg \
+  qt/nairacoin/res/img/ic-submenu-unlock.svg \
+  qt/nairacoin/res/img/img-nav-logo.png \
+  qt/nairacoin/res/img/ic-arrow-white-left.svg \
+  qt/nairacoin/res/img/ic-exit.svg \
+  qt/nairacoin/res/img/ic-switch-liliac-on.svg \
+  qt/nairacoin/res/img/img-nav-logo.svg \
+  qt/nairacoin/res/img/ic-arrow-white-right.svg \
+  qt/nairacoin/res/img/ic-expand.svg \
+  qt/nairacoin/res/img/ic-switch-off.svg \
+  qt/nairacoin/res/img/img-qr-test-big.png \
+  qt/nairacoin/res/img/ic-check-active.svg \
+  qt/nairacoin/res/img/ic-folder.svg \
+  qt/nairacoin/res/img/ic-switch-on.svg \
+  qt/nairacoin/res/img/img-qr-test.png \
+  qt/nairacoin/res/img/ic-check-box.svg \
+  qt/nairacoin/res/img/ic-check-box-dark-active.svg \
+  qt/nairacoin/res/img/ic-check-box-indeterminate.svg \
+  qt/nairacoin/res/img/ic-check-box-liliac-indeterminate.svg \
+  qt/nairacoin/res/img/ic-label-liliac.svg \
+  qt/nairacoin/res/img/ic-transaction-warning.svg \
+  qt/nairacoin/res/img/ic-transaction-mint.svg \
+  qt/nairacoin/res/img/ic-transaction-mint-inactive.svg \
+  qt/nairacoin/res/img/ic-check-cold-staking.svg \
+  qt/nairacoin/res/img/ic-check-cold-staking-off.svg \
+  qt/nairacoin/res/img/ic-check-cold-staking-enabled.svg \
+  qt/nairacoin/res/img/dark/ic-transaction-cs-contract.svg \
+  qt/nairacoin/res/img/dark/ic-transaction-cs-contract-inactive.svg \
+  qt/nairacoin/res/img/img-qr.svg \
+  qt/nairacoin/res/img/ic-check-connect-off.svg \
+  qt/nairacoin/res/img/ic-label.svg \
+  qt/nairacoin/res/img/ic-transaction-received.svg \
+  qt/nairacoin/res/img/dark/ic-transaction-received.svg \
+  qt/nairacoin/res/img/dark/ic-transaction-warning.svg \
+  qt/nairacoin/res/img/dark/ic-transaction-mint.svg \
+  qt/nairacoin/res/img/dark/ic-transaction-mint-inactive.svg \
+  qt/nairacoin/res/img/ic-transaction-received-inactive.svg \
+  qt/nairacoin/res/img/dark/ic-transaction-received-inactive.svg \
+  qt/nairacoin/res/img/img-welcome-step1.png \
+  qt/nairacoin/res/img/ic-check-connect.svg \
+  qt/nairacoin/res/img/ic-menu-hover.svg \
+  qt/nairacoin/res/img/ic-transaction-sent.svg \
+  qt/nairacoin/res/img/ic-transaction-sent-inactive.svg \
+  qt/nairacoin/res/img/dark/ic-transaction-sent.svg \
+  qt/nairacoin/res/img/dark/ic-transaction-sent-inactive.svg \
+  qt/nairacoin/res/img/img-welcome-step2.png \
+  qt/nairacoin/res/img/ic-check-dark.svg \
+  qt/nairacoin/res/img/ic-mint.svg \
+  qt/nairacoin/res/img/ic-transaction-staked.svg \
+  qt/nairacoin/res/img/ic-transaction-staked-inactive.svg \
+  qt/nairacoin/res/img/dark/ic-transaction-staked.svg \
+  qt/nairacoin/res/img/dark/ic-transaction-staked-inactive.svg \
+  qt/nairacoin/res/img/img-welcome-step3.png \
+  qt/nairacoin/res/img/ic-check-liliac-on.svg \
+  qt/nairacoin/res/img/ic-nav-address-active.svg \
+  qt/nairacoin/res/img/ic-unlock-staking.svg \
+  qt/nairacoin/res/img/img-welcome-step4.png \
+  qt/nairacoin/res/img/ic-check-locked-off.svg \
+  qt/nairacoin/res/img/ic-nav-address-hover.svg \
+  qt/nairacoin/res/img/ic-update-liliac.svg \
+  qt/nairacoin/res/img/ic-arrow-drop-down-purple.svg \
+  qt/nairacoin/res/img/ic-arrow-drop-up-purple.svg \
+  qt/nairacoin/res/img/ic-check-liliac-indeterminate.svg \
+  qt/nairacoin/res/img/ic-check-box-liliac-indeterminate.svg \
+  qt/nairacoin/res/img/ic-transaction-stake-delegated.svg \
+  qt/nairacoin/res/img/ic-transaction-stake-delegated-inactive.svg \
+  qt/nairacoin/res/img/ic-transaction-stake-hot.svg \
+  qt/nairacoin/res/img/ic-transaction-stake-hot-inactive.svg \
+  qt/nairacoin/res/img/dark/ic-transaction-stake-hot.svg \
+  qt/nairacoin/res/img/dark/ic-transaction-stake-hot-inactive.svg \
+  qt/nairacoin/res/img/dark/ic-transaction-stake-delegated.svg \
+  qt/nairacoin/res/img/dark/ic-transaction-stake-delegated-inactive.svg \
+  qt/nairacoin/res/img/ic-transaction-cs-contract.svg \
+  qt/nairacoin/res/img/ic-transaction-cs-contract-inactive.svg \
+  qt/nairacoin/res/img/ic-check-box-indeterminate.svg \
+  qt/nairacoin/res/img/ani-loading-dark.gif \
+  qt/nairacoin/res/img/ani-loading.gif
+
+
+
+BITCOIN_QT_BASE_CPP = \
+  qt/bantablemodel.cpp \
+  qt/bitcoinaddressvalidator.cpp \
+  qt/bitcoinamountfield.cpp \
+  qt/nairacoin/nairacoingui.cpp \
+  qt/bitcoinunits.cpp \
+  qt/blockexplorer.cpp \
+  qt/clientmodel.cpp \
+  qt/csvmodelwriter.cpp \
+  qt/guiutil.cpp \
+  qt/intro.cpp \
+  qt/networkstyle.cpp \
+  qt/notificator.cpp \
+  qt/optionsdialog.cpp \
+  qt/optionsmodel.cpp \
+  qt/peertablemodel.cpp \
+  qt/platformstyle.cpp \
+  qt/qvalidatedlineedit.cpp \
+  qt/qvaluecombobox.cpp \
+  qt/rpcconsole.cpp \
+  qt/splashscreen.cpp \
+  qt/trafficgraphwidget.cpp \
+  qt/utilitydialog.cpp
+
+BITCOIN_QT_WINDOWS_CPP = qt/winshutdownmonitor.cpp
+
+BITCOIN_QT_WALLET_CPP = \
+  qt/addressbookpage.cpp \
+  qt/addresstablemodel.cpp \
+  qt/askpassphrasedialog.cpp \
+  qt/blockexplorer.cpp \
+  qt/coincontroldialog.cpp \
+  qt/coincontroltreewidget.cpp \
+  qt/editaddressdialog.cpp \
+  qt/governancepage.cpp \
+  qt/openuridialog.cpp \
+  qt/paymentrequestplus.cpp \
+  qt/paymentserver.cpp \
+  qt/proposalframe.cpp \
+  qt/recentrequeststablemodel.cpp \
+  qt/transactiondesc.cpp \
+  qt/transactionfilterproxy.cpp \
+  qt/transactionrecord.cpp \
+  qt/transactiontablemodel.cpp \
+  qt/walletmodel.cpp \
+  qt/walletmodeltransaction.cpp \
+  qt/nairacoin/loadingdialog.cpp \
+  qt/zNRCcontroldialog.cpp \
+  qt/nairacoin/pwidget.cpp \
+  qt/nairacoin/guitransactionsutils.cpp \
+  qt/nairacoin/snackbar.cpp \
+  qt/nairacoin/navmenuwidget.cpp \
+  qt/nairacoin/lockunlock.cpp \
+  qt/nairacoin/receivedialog.cpp \
+  qt/nairacoin/furabstractlistitemdelegate.cpp \
+  qt/nairacoin/txviewholder.cpp \
+  qt/nairacoin/qtutils.cpp \
+  qt/nairacoin/expandablebutton.cpp \
+  qt/nairacoin/walletpassworddialog.cpp \
+  qt/nairacoin/topbar.cpp \
+  qt/nairacoin/txrow.cpp \
+  qt/nairacoin/addressholder.cpp \
+  qt/nairacoin/addressfilterproxymodel.cpp \
+  qt/nairacoin/dashboardwidget.cpp \
+  qt/nairacoin/coincontrolpivwidget.cpp \
+  qt/nairacoin/addresslabelrow.cpp \
+  qt/nairacoin/contactdropdownrow.cpp \
+  qt/nairacoin/contactsdropdown.cpp \
+  qt/nairacoin/optionbutton.cpp \
+  qt/nairacoin/mninfodialog.cpp \
+  qt/nairacoin/coldstakingmodel.cpp \
+  qt/nairacoin/mnmodel.cpp \
+  qt/nairacoin/masternodewizarddialog.cpp \
+  qt/nairacoin/mnrow.cpp \
+  qt/nairacoin/masternodeswidget.cpp \
+  qt/nairacoin/myaddressrow.cpp \
+  qt/nairacoin/csrow.cpp \
+  qt/nairacoin/sendchangeaddressdialog.cpp \
+  qt/nairacoin/sendconfirmdialog.cpp \
+  qt/nairacoin/sendcustomfeedialog.cpp \
+  qt/nairacoin/sendchangeaddressdialog.cpp \
+  qt/nairacoin/sendmultirow.cpp \
+  qt/nairacoin/send.cpp \
+  qt/nairacoin/addnewaddressdialog.cpp \
+  qt/nairacoin/addnewcontactdialog.cpp \
+  qt/nairacoin/requestdialog.cpp \
+  qt/nairacoin/receivewidget.cpp \
+  qt/nairacoin/tooltipmenu.cpp \
+  qt/nairacoin/addresseswidget.cpp \
+  qt/nairacoin/defaultdialog.cpp \
+  qt/nairacoin/denomgenerationdialog.cpp \
+  qt/nairacoin/privacywidget.cpp \
+  qt/nairacoin/coldstakingwidget.cpp \
+  qt/nairacoin/settings/settingsbackupwallet.cpp \
+  qt/nairacoin/settings/settingsbittoolwidget.cpp \
+  qt/nairacoin/settings/settingsconsolewidget.cpp \
+  qt/nairacoin/settings/settingsdisplayoptionswidget.cpp \
+  qt/nairacoin/settings/settingsfaqwidget.cpp \
+  qt/nairacoin/settings/settingsinformationwidget.cpp \
+  qt/nairacoin/settings/settingsmainoptionswidget.cpp \
+  qt/nairacoin/settings/settingsmultisenddialog.cpp \
+  qt/nairacoin/settings/settingsmultisendwidget.cpp \
+  qt/nairacoin/settings/settingssignmessagewidgets.cpp \
+  qt/nairacoin/settings/settingswalletoptionswidget.cpp \
+  qt/nairacoin/settings/settingswalletrepairwidget.cpp \
+  qt/nairacoin/settings/settingswidget.cpp \
+  qt/nairacoin/welcomecontentwidget.cpp \
+  qt/nairacoin/splash.cpp
+
+
+BITCOIN_QT_CPP = $(BITCOIN_QT_BASE_CPP)
+if TARGET_WINDOWS
+BITCOIN_QT_CPP += $(BITCOIN_QT_WINDOWS_CPP)
+endif
+if ENABLE_WALLET
+BITCOIN_QT_CPP += $(BITCOIN_QT_WALLET_CPP)
+endif
+
+RES_IMAGES = \
+  qt/res/images/about.png \
+  qt/res/images/splash.png \
+  qt/res/images/splash_testnet.png \
+  qt/res/images/splash_regtest.png \
+  qt/res/images/nairacoin_logo_horizontal.png \
+  qt/res/images/downArrow_dark.png \
+  qt/res/images/downArrow_small_dark.png \
+  qt/res/images/downArrow_small.png \
+  qt/res/images/upArrow_small_dark.png \
+  qt/res/images/upArrow_small.png \
+  qt/res/images/leftArrow_small_dark.png \
+  qt/res/images/rightArrow_small_dark.png \
+  qt/res/images/qtreeview_selected.png
+
+RES_CSS = \
+  qt/res/css/default.css \
+  qt/nairacoin/res/css/style_dark.css \
+  qt/nairacoin/res/css/style_light.css
+
+RES_MOVIES = $(wildcard $(srcdir)/qt/res/movies/spinner-*.png)
+
+BITCOIN_RC = qt/res/nairacoin-qt-res.rc
+
+BITCOIN_QT_INCLUDES = -I$(builddir)/qt -I$(srcdir)/qt -I$(srcdir)/qt/forms \
+  -I$(builddir)/qt/forms
+
+qt_libbitcoinqt_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+  $(QT_INCLUDES) $(QT_DBUS_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS) $(SVG_CFLAGS) $(CHARTS_CFLAGS)
+qt_libbitcoinqt_a_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+qt_libbitcoinqt_a_OBJCXXFLAGS = $(AM_OBJCXXFLAGS) $(QT_PIE_FLAGS)
+
+qt_libbitcoinqt_a_SOURCES = $(BITCOIN_QT_CPP) $(BITCOIN_QT_H) $(QT_FORMS_UI) \
+  $(QT_QRC) $(QT_QRC_LOCALE) $(QT_TS) $(PROTOBUF_PROTO) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS) $(RES_MOVIES)
+
+nodist_qt_libbitcoinqt_a_SOURCES = $(QT_MOC_CPP) $(QT_MOC) $(PROTOBUF_CC) \
+  $(PROTOBUF_H) $(QT_QRC_CPP) $(QT_QRC_LOCALE_CPP)
+
+# forms/foo.h -> forms/ui_foo.h
+QT_FORMS_H=$(join $(dir $(QT_FORMS_UI)),$(addprefix ui_, $(notdir $(QT_FORMS_UI:.ui=.h))))
+
+# Most files will depend on the forms and moc files as includes. Generate them
+# before anything else.
+$(QT_MOC): $(QT_FORMS_H)
+$(qt_libbitcoinqt_a_OBJECTS) $(qt_nairacoin_qt_OBJECTS) : | $(QT_MOC)
+
+#Generating these with a half-written protobuf header leads to wacky results.
+#This makes sure it's done.
+$(QT_MOC): $(PROTOBUF_H)
+$(QT_MOC_CPP): $(PROTOBUF_H)
+
+# nairacoin-qt binary #
+qt_nairacoin_qt_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+  $(QT_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS) $(SVG_CFLAGS) $(CHARTS_CFLAGS)
+qt_nairacoin_qt_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+
+qt_nairacoin_qt_SOURCES = qt/nairacoin.cpp
+if TARGET_DARWIN
+  qt_nairacoin_qt_SOURCES += $(BITCOIN_MM)
+endif
+if TARGET_WINDOWS
+  qt_nairacoin_qt_SOURCES += $(BITCOIN_RC)
+endif
+qt_nairacoin_qt_LDADD = qt/libbitcoinqt.a $(LIBBITCOIN_SERVER)
+if ENABLE_WALLET
+qt_nairacoin_qt_LDADD += $(LIBBITCOIN_UTIL) $(LIBBITCOIN_WALLET)
+endif
+if ENABLE_ZMQ
+qt_nairacoin_qt_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
+endif
+qt_nairacoin_qt_LDADD += $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) $(LIBUNIVALUE) $(LIBBITCOIN_ZEROCOIN) $(LIBLEVELDB) $(LIBLEVELDB_SSE42) $(LIBMEMENV) \
+  $(BOOST_LIBS) $(QT_LIBS) $(QT_DBUS_LIBS) $(QR_LIBS) $(PROTOBUF_LIBS) $(SVG_LIBS) $(CHARTS_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(LIBSECP256K1) \
+  $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
+qt_nairacoin_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+qt_nairacoin_qt_LIBTOOLFLAGS = $(AM_LIBTOOLFLAGS) --tag CXX
+
+#locale/foo.ts -> locale/foo.qm
+QT_QM=$(QT_TS:.ts=.qm)
+
+SECONDARY: $(QT_QM)
+
+$(srcdir)/qt/nairacoinstrings.cpp: $(libbitcoin_server_a_SOURCES) $(libbitcoin_wallet_a_SOURCES) $(libbitcoin_common_a_SOURCES) $(libbitcoin_zmq_a_SOURCES) $(libbitcoin_util_a_SOURCES)
+	@test -n $(XGETTEXT) || echo "xgettext is required for updating translations"
+	$(AM_V_GEN) cd $(srcdir); XGETTEXT=$(XGETTEXT) PACKAGE_NAME="$(PACKAGE_NAME)" $(PYTHON) ../share/qt/extract_strings_qt.py $^
+
+translate: $(srcdir)/qt/nairacoinstrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(BITCOIN_QT_BASE_CPP) qt/nairacoin.cpp $(BITCOIN_QT_WINDOWS_CPP) $(BITCOIN_QT_WALLET_CPP) $(BITCOIN_QT_H) $(BITCOIN_MM)
+	@test -n $(LUPDATE) || echo "lupdate is required for updating translations"
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts $(srcdir)/qt/locale/nairacoin_en.ts
+
+$(QT_QRC_LOCALE_CPP): $(QT_QRC_LOCALE) $(QT_QM)
+	@test -f $(RCC)
+	@cp -f $< $(@D)/temp_$(<F)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name nairacoin_locale $(@D)/temp_$(<F) | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+	@rm $(@D)/temp_$(<F)
+
+$(QT_QRC_CPP): $(QT_QRC) $(QT_FORMS_H) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS) $(RES_MOVIES) $(PROTOBUF_H)
+	@test -f $(RCC)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name nairacoin $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+CLEAN_QT = $(nodist_qt_libbitcoinqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno qt/temp_nairacoin_locale.qrc
+
+CLEANFILES += $(CLEAN_QT)
+
+nairacoin_qt_clean: FORCE
+	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_nairacoin_qt_OBJECTS) qt/nairacoin-qt$(EXEEXT) $(LIBBITCOINQT)
+
+nairacoin_qt : qt/nairacoin-qt$(EXEEXT)
+
+ui_%.h: %.ui
+	@test -f $(UIC)
+	@$(MKDIR_P) $(@D)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(UIC) -o $@ $< || (echo "Error creating $@"; false)
+
+%.moc: %.cpp
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(MOC) $(DEFAULT_INCLUDES) $(QT_INCLUDES) $(MOC_DEFS) $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+moc_%.cpp: %.h
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(MOC) $(DEFAULT_INCLUDES) $(QT_INCLUDES) $(MOC_DEFS) $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+%.qm: %.ts
+	@test -f $(LRELEASE)
+	@$(MKDIR_P) $(@D)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LRELEASE) -silent $< -qm $@

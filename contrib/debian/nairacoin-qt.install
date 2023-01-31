@@ -1,0 +1,6 @@
+usr/local/bin/nairacoin-qt usr/bin
+share/pixmaps/nairacoin32.xpm usr/share/pixmaps
+share/pixmaps/nairacoin16.xpm usr/share/pixmaps
+share/pixmaps/nairacoin128.png usr/share/pixmaps
+debian/nairacoin-qt.desktop usr/share/applications
+debian/nairacoin-qt.protocol usr/share/kde4/services/

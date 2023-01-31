@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Name=Nairacoin Core
+Comment=Nairacoin P2P Cryptocurrency
+Exec=nairacoin-qt %u
+Terminal=false
+Type=Application
+Icon=nairacoin128
+MimeType=x-scheme-handler/nairacoin;
+Categories=Office;Finance;
+StartupWMClass=Nairacoin-qt
+Name[en_US]=nairacoin-qt.desktop

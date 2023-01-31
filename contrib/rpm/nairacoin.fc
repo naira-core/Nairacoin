@@ -1,0 +1,8 @@
+/usr/bin/nairacoin-cli		--	gen_context(system_u:object_r:nairacoin_exec_t,s0)
+/usr/sbin/nairacoind		--	gen_context(system_u:object_r:nairacoin_exec_t,s0)
+/usr/lib(64)?/nairacoin/nairacoind		--	gen_context(system_u:object_r:nairacoin_exec_t,s0)
+
+/etc/nairacoin(/.*)?		gen_context(system_u:object_r:nairacoin_conf_t,s0)
+/var/lib/nairacoin(/.*)?		gen_context(system_u:object_r:nairacoin_var_lib_t,s0)
+
+(/var)?/run/nairacoind(/.*)?   gen_context(system_u:object_r:nairacoin_var_run_t,s0)

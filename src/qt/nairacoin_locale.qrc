@@ -1,0 +1,37 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource prefix="/translations">
+        <file alias="bg">locale/nairacoin_bg.qm</file>
+        <file alias="ca">locale/nairacoin_ca.qm</file>
+        <file alias="cs">locale/nairacoin_cs.qm</file>
+        <file alias="da">locale/nairacoin_da.qm</file>
+        <file alias="de">locale/nairacoin_de.qm</file>
+        <file alias="en">locale/nairacoin_en.qm</file>
+        <file alias="en_GB">locale/nairacoin_en_GB.qm</file>
+        <file alias="en_US">locale/nairacoin_en_US.qm</file>
+        <file alias="eo">locale/nairacoin_eo.qm</file>
+        <file alias="es">locale/nairacoin_es.qm</file>
+        <file alias="es_ES">locale/nairacoin_es_ES.qm</file>
+        <file alias="fi">locale/nairacoin_fi.qm</file>
+        <file alias="fr_FR">locale/nairacoin_fr_FR.qm</file>
+        <file alias="hi_IN">locale/nairacoin_hi_IN.qm</file>
+        <file alias="hr">locale/nairacoin_hr.qm</file>
+        <file alias="hr_HR">locale/nairacoin_hr_HR.qm</file>
+        <file alias="it">locale/nairacoin_it.qm</file>
+        <file alias="ja">locale/nairacoin_ja.qm</file>
+        <file alias="ko_KR">locale/nairacoin_ko_KR.qm</file>
+        <file alias="lt_LT">locale/nairacoin_lt_LT.qm</file>
+        <file alias="nl">locale/nairacoin_nl.qm</file>
+        <file alias="pl">locale/nairacoin_pl.qm</file>
+        <file alias="pt">locale/nairacoin_pt.qm</file>
+        <file alias="pt_BR">locale/nairacoin_pt_BR.qm</file>
+        <file alias="ro_RO">locale/nairacoin_ro_RO.qm</file>
+        <file alias="ru">locale/nairacoin_ru.qm</file>
+        <file alias="sk">locale/nairacoin_sk.qm</file>
+        <file alias="sv">locale/nairacoin_sv.qm</file>
+        <file alias="tr">locale/nairacoin_tr.qm</file>
+        <file alias="uk">locale/nairacoin_uk.qm</file>
+        <file alias="vi">locale/nairacoin_vi.qm</file>
+        <file alias="zh_CN">locale/nairacoin_zh_CN.qm</file>
+        <file alias="zh_TW">locale/nairacoin_zh_TW.qm</file>
+    </qresource>
+</RCC>
