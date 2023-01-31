@@ -4,7 +4,7 @@ Nairacoin Core integration/staging repository
 ### Coin Specs
 
 • PoW Algorithm: Quark  
-• Premine - 50000000 NRC 
+• Premine - 50000000 NRC  
 • PoW Blocks: 1 - 200  
 • PoS Blocks: Starting from 201  
 • Block Time: 60 Seconds  
