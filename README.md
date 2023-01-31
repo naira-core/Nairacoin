@@ -4,11 +4,11 @@ Nairacoin Core integration/staging repository
 ### Coin Specs
 
 • PoW Algorithm: Quark  
-• Premine: 2 000 000 NRC (1%)  
-• PoW Blocks: 1 - 250  
-• PoS Blocks: Starting from 251  
+• Premine - 50000000 NRC 
+• PoW Blocks: 1 - 200  
+• PoS Blocks: Starting from 201  
 • Block Time: 60 Seconds  
-• Maturity: 100 Confirmations  
-• Total Coin Supply: 10 000 000 000  
-• Prefix: NRC adresses start with the letter "L"  
+• Maturity: 21 Confirmations  
+• Total Coin Supply: 1000000000 NRC 
+• Prefix: NRC adresses start with the letter "N"  
 • Ports: 25333 (p2p) / 25222 (rpc)  
